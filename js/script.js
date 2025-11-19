@@ -6,6 +6,52 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // ========================================
+    // TYPING EFFECT FOR POSITIONS
+    // ========================================
+    const typingText = document.querySelector('.typing-text');
+    const positions = [
+        'Software Engineer',
+        'Web Developer',
+        'Data Analyst',
+        'Frontend Developer'
+    ];
+    
+    let positionIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    
+    function typeEffect() {
+        const currentPosition = positions[positionIndex];
+        
+        if (isDeleting) {
+            typingText.textContent = currentPosition.substring(0, charIndex);
+            charIndex--;
+            
+            if (charIndex === 0) {
+                isDeleting = false;
+                positionIndex = (positionIndex + 1) % positions.length;
+                setTimeout(typeEffect, 500);
+                return;
+            }
+        } else {
+            typingText.textContent = currentPosition.substring(0, charIndex + 1);
+            charIndex++;
+            
+            if (charIndex === currentPosition.length) {
+                isDeleting = true;
+                setTimeout(typeEffect, 2000);
+                return;
+            }
+        }
+        
+        const typingSpeed = isDeleting ? 50 : 100;
+        setTimeout(typeEffect, typingSpeed);
+    }
+    
+    // Start typing effect
+    typeEffect();
+    
+    // ========================================
     // SMOOTH SCROLLING
     // ========================================
     const navLinks = document.querySelectorAll('a[href^="#"]');
