@@ -315,7 +315,7 @@ function isInViewport(element) {
 }
 
 // ========================================
-// CONTACT FORM HANDLING
+// CONTACT FORM HANDLING WITH EMAILJS
 // ========================================
 const contactForm = document.getElementById('contactForm');
 
@@ -323,67 +323,27 @@ if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Get form data
-        const name = contactForm.querySelector('input[name="name"]').value;
-        const email = contactForm.querySelector('input[name="email"]').value;
-        const message = contactForm.querySelector('textarea[name="message"]').value;
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
         
-        // Create mailto link with form data
-        const subject = encodeURIComponent(`Portfolio Contact: Message from ${name}`);
-        const body = encodeURIComponent(
-            `Name: ${name}\n` +
-            `Email: ${email}\n\n` +
-            `Message:\n${message}`
-        );
+        // Change button text to show sending state
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
         
-        const mailtoLink = `mailto:umeshaudayangani2001@gmail.com?subject=${subject}&body=${body}`;
-        
-        // Open default email client
-        window.location.href = mailtoLink;
-        
-        // Show success message
-        alert('Opening your email client... Please send the email to complete your message.');
-        
-        // Optional: Reset form
-        contactForm.reset();
+        // Send email using EmailJS
+        emailjs.sendForm('service_yrkwv5g', 'template_i6l4qcc', this)
+            .then(function() {
+                // Success
+                alert('✅ Message sent successfully! I will get back to you soon.');
+                contactForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, function(error) {
+                // Error
+                console.error('EmailJS Error:', error);
+                alert('❌ Failed to send message. Please try emailing me directly at umeshaudayangani2001@gmail.com');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
     });
 }
-
-// ========================================
-// ALTERNATIVE: EMAILJS INTEGRATION (Optional)
-// ========================================
-/*
-For a more professional email solution without opening email client:
-
-1. Sign up at https://www.emailjs.com/
-2. Get your Public Key, Service ID, and Template ID
-3. Add this script in index.html BEFORE script.js:
-   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-4. Replace the contact form handler above with:
-
-// Initialize EmailJS
-(function() {
-    emailjs.init("YOUR_PUBLIC_KEY");
-})();
-
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-    
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-        .then(function() {
-            alert('✅ Message sent successfully! I will get back to you soon.');
-            contactForm.reset();
-            submitBtn.textContent = 'Send Message';
-            submitBtn.disabled = false;
-        }, function(error) {
-            alert('❌ Failed to send message. Please try again or email me directly.');
-            console.error('EmailJS Error:', error);
-            submitBtn.textContent = 'Send Message';
-            submitBtn.disabled = false;
-        });
-});
-*/
