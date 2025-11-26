@@ -331,7 +331,7 @@ if (contactForm) {
         submitBtn.disabled = true;
         
         // Send email using EmailJS
-        emailjs.sendForm('service_qg6sshq', 'template_8gojbca', this)
+        emailjs.sendForm('service_qg6sshq', 'template_j559zqa', this)
             .then(function() {
                 // Success
                 alert('✅ Message sent successfully! I will get back to you soon.');
