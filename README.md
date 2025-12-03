@@ -171,13 +171,17 @@ This portfolio is deployed using **GitHub Pages**.
 
 ### Deploy Your Own Version
 
-1. **Fork this repository**
-2. **Go to repository Settings**
-3. **Navigate to Pages section**
-4. **Select Source:** Deploy from branch
-5. **Select Branch:** main → / (root)
-6. **Save and wait 2-3 minutes**
-7. **Your site will be live at:** `https://yourusername.github.io/my-portfolio/`
+1. **Fork or clone this repository**
+2. **Ensure `.nojekyll` is present in the root** (already included)
+3. **Go to repository Settings**
+4. **Navigate to Pages section**
+5. **Select Source:** Deploy from branch
+6. **Select Branch:** main → / (root)
+7. **Save and wait 2-3 minutes**
+8. **Your site will be live at:** `https://yourusername.github.io/my-portfolio/`
+
+#### Asset Paths
+All asset paths (CSS, JS, images, CV) are relative and compatible with GitHub Pages. No further changes needed for deployment.
 
 ---
 

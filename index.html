@@ -6,6 +6,15 @@
     <meta name="description" content="Umesha Jayakody - Frontend Developer Portfolio. Passionate about building responsive web applications.">
     <meta name="keywords" content="Umesha Jayakody, Frontend Developer, Web Developer, React, Flutter">
     <meta name="author" content="Umesha Jayakody">
+    <!--
+    =============================
+    GitHub Pages Deployment Notes
+    =============================
+    - All asset paths are relative (css/, js/, images/, cv/)
+    - .nojekyll file is present to allow custom folders
+    - To deploy: push to GitHub, enable Pages in repo settings, set branch to main and folder to / (root)
+    - Your site will be live at: https://yourusername.github.io/my-portfolio/
+    -->
     
     <title>Umesha Jayakody - Frontend Developer</title>
     
@@ -25,10 +34,27 @@
 </head>
 <body>
     <!-- Logo -->
-    <div class="logo" style="display: flex; align-items: center; justify-content: center; margin-top: 24px;">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="40" cy="40" r="38" stroke="#4F46E5" stroke-width="4" fill="#F3F4F6" />
-            <text x="50%" y="54%" text-anchor="middle" fill="#4F46E5" font-size="36" font-family="Arial, Helvetica, sans-serif" font-weight="bold" dy=".3em">UJ</text>
+    <div class="logo" aria-label="Site logo">
+        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="false">
+            <defs>
+                <radialGradient id="lg" cx="30%" cy="30%" r="80%">
+                    <stop offset="0%" stop-color="#00e0ff" />
+                    <stop offset="60%" stop-color="#7c3aed" />
+                    <stop offset="100%" stop-color="#ec4899" />
+                </radialGradient>
+                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            <circle cx="50" cy="50" r="46" fill="url(#lg)" />
+            <circle cx="50" cy="50" r="46" fill-opacity="0.06" />
+            <g filter="url(#glow)">
+                <text x="50%" y="56%" text-anchor="middle" fill="#ffffff" font-size="40" font-family="Arial, Helvetica, sans-serif" font-weight="700" dy=".3em">UJ</text>
+            </g>
         </svg>
     </div>
     <!-- Background Animation -->
